@@ -12,6 +12,14 @@
 #include <metroplot.h>
 #include <line.h>
 
+#include <QFile>
+#include <QFileDialog>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonParseError>
+#include <QByteArray>
+
 
 class MetroMap : public QMainWindow
 {
@@ -20,6 +28,9 @@ class MetroMap : public QMainWindow
 public:
     MetroMap(QWidget *parent = 0);
     ~MetroMap();
+    QJsonParseError json_read_errors;
+public slots:
+    void readJSON();
 };
 
 #endif // METROMAP_H

@@ -26,3 +26,6 @@ HEADERS  += metromap.h \
     station.h \
     transferstation.h \
     line.h
+
+DISTFILES += \
+    json.json

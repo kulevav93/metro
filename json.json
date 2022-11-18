@@ -1,0 +1,28 @@
+{  
+	"lines": [
+		{
+            "name": "fitst line",
+			"stations": [
+				{
+					"name": "first_1"
+                },
+				{
+                    "name": "second_1",
+                    "neighbor": "first_1"
+				}
+			]
+		},
+		{
+            "name": "second line",
+            "stations": [
+                {
+                    "name": "first_2"
+                },
+                {
+                    "name": "second_2",
+                    "neighbor": "first_2"
+                }
+            ]
+		}
+	]
+}  

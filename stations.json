@@ -1,0 +1,29 @@
+{"lines":[
+	{
+		"name": "line1",
+		"stations":[
+			{
+				"name": "first",
+				"neighbors":[]
+			},
+			{
+				"name": "second"
+				"neighbors":["first"]
+			}
+		]
+	},
+	{"name": "line2",
+	"stations":[
+		{
+		"name": "first2",
+		"neighbors":[]
+		},
+		{
+		"name": "second2"
+		"neighbors":["first2"]
+		}
+		]
+	}
+		
+	]
+}
