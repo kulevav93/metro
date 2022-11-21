@@ -2,6 +2,7 @@
 #define LINE_H
 
 #include <QString>
+#include <QMap>
 #include <memory>
 #include "station.h"
 
@@ -16,6 +17,11 @@ public:
 
     Station* addStation(QString name);
     Station* addStation(QString name, Station* prev);
+
+    Station* findStation(QString name);
+
+protected:
+    QMap<QString, Station *> stations;
 };
 
 #endif // LINE_H

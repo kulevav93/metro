@@ -8,9 +8,19 @@ MetroPlot::MetroPlot(QWidget *parent) : QWidget(parent)
 void MetroPlot::addLine(std::shared_ptr<Line> line)
 {
     lines.append(line);
-    for(auto l: lines){
-        qDebug() << l.get()->name;
+}
+
+void MetroPlot::printLines()
+{
+    for(auto line: lines){
+      qDebug() << "Printing all stations of line " << line.get()->name << " :";
+      Station *head = line.get()->head;
+      while(head != nullptr){
+          qDebug() << " " << head->name;
+          head = head->next;
+      }
     }
+
 }
 
 void MetroPlot::paintEvent(QPaintEvent *)

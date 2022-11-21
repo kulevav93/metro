@@ -24,6 +24,7 @@ Station *Line::addStation(QString name)
     if(head == nullptr){
         Station* station = new Station(name);
         head = station;
+        stations.insert(name, station);
         return station;
     }
     return nullptr;
@@ -32,6 +33,17 @@ Station *Line::addStation(QString name)
 
 Station *Line::addStation(QString name, Station *prev)
 {
-    return new Station(name, prev);
+    Station* station = new Station(name, prev);
+    stations.insert(name, station);
+    return station;
+}
+
+Station *Line::findStation(QString name)
+{
+    auto it = stations.find(name);
+    if(it != stations.end()){
+       return *it;
+    }
+    return nullptr;
 }
 

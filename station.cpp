@@ -19,6 +19,6 @@ Station::Station(QString name, Station* prev)
         this->next = nullptr;
     }
     this->prev = prev;
-    prev->next = this; qDebug() << "end";
+    prev->next = this;
 }
 

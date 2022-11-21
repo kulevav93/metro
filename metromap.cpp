@@ -16,15 +16,17 @@ MetroMap::MetroMap(QWidget *parent)
     connect(quit, &QAction::triggered, qApp, QApplication::quit);
     connect(loadFile, &QAction::triggered, this, &MetroMap::readJSON);
 
-    MetroPlot *metro_plot = new MetroPlot();
+    metro_plot = new MetroPlot();
     setCentralWidget(metro_plot); // помещаем созданный виджет в центр виджета QMainWindow
 
     statusBar()->showMessage("Ready"); // показываем в нижней панели приложения сообщение "Ready"
 
-    auto l = std::make_shared<Line>("first line");
+    /*auto l = std::make_shared<Line>("first line");
+    l.get()->addStation("first_1");
+    qDebug() << l.get()->findStation("first_1")->name;
     metro_plot->addLine(l);
     auto l2 = std::make_shared<Line>("second line");
-    metro_plot->addLine(l2);
+    metro_plot->addLine(l2);*/
 }
 
 MetroMap::~MetroMap()
@@ -48,20 +50,30 @@ void MetroMap::readJSON()
     if(json_read_errors.errorString().toInt() == QJsonParseError::NoError){
         QJsonArray lines = QJsonValue(json_doc.object().value("lines")).toArray();
         for(auto line = 0; line < lines.count(); line++){
-            qDebug() << "creating new Line:" << lines.at(line).toObject().value("name").toString();
+            QString line_name = lines.at(line).toObject().value("name").toString();
+            qDebug() << "creating new Line:" << line_name;
+            auto line_ptr = std::make_shared<Line>(line_name);
+            metro_plot->addLine(line_ptr);
             QJsonArray stations = lines.at(line).toObject().value("stations").toArray(); // get stations of line
+            qDebug() << "number of stations is " << stations.count();
             for(int station = 0; station < stations.count(); station++){
                 QString neighbor = "";
                 neighbor = stations.at(station).toObject().value("neighbor").toString();
+                QString station_name = stations.at(station).toObject().value("name").toString();
                 if(neighbor == ""){//station is first on the line
-                    qDebug() << "creating station: " << stations.at(station).toObject().value("name").toString();
+                    qDebug() << "creating station: " << station_name;
+                    line_ptr.get()->addStation(station_name);
                 }
-                else{
-                    qDebug() << "creating station: " << stations.at(station).toObject().value("name").toString()
-                             << " after station: " << neighbor;
+                else{//insertion staition after neighbor
+                    Station* neighbor_ptr = line_ptr.get()->findStation(neighbor);
+                    if(neighbor_ptr != nullptr){
+                        qDebug() << "creating station: " << station_name
+                                 << " after station: " << neighbor;
+                        line_ptr.get()->addStation(station_name, neighbor_ptr);
+                    }
                 }
             }
-        }
+        }metro_plot->printLines();
     }
     else{
         qDebug() << json_read_errors.errorString();

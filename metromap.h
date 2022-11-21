@@ -28,6 +28,7 @@ class MetroMap : public QMainWindow
 public:
     MetroMap(QWidget *parent = 0);
     ~MetroMap();
+    MetroPlot *metro_plot;
     QJsonParseError json_read_errors;
 public slots:
     void readJSON();

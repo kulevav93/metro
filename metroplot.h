@@ -17,10 +17,11 @@ public:
     explicit MetroPlot(QWidget *parent = 0);
 
     void addLine(std::shared_ptr<Line> line);
+    void printLines();
 
 protected:
     void paintEvent(QPaintEvent *);
-private:
+public:
     QVector<std::shared_ptr<Line> > lines;
 
 signals:
