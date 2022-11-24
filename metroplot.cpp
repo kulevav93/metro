@@ -16,7 +16,13 @@ void MetroPlot::printLines()
       qDebug() << "Printing all stations of line " << line.get()->name << " :";
       Station *head = line.get()->head;
       while(head != nullptr){
-          qDebug() << " " << head->name;
+          qDebug() << " " << head->name << "time to back: " << head->time_to_prev;
+          if(typeid(*head) == typeid(TransferStation)){
+              for(auto tr: dynamic_cast<TransferStation*>(head)->transfers){
+                  qDebug() << "transfer to: " << tr.first->name << " for " << tr.second;
+              }
+          }
+
           head = head->next;
       }
     }

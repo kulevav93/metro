@@ -5,6 +5,7 @@
 #include <QMap>
 #include <memory>
 #include "station.h"
+#include "transferstation.h"
 
 class Line
 {
@@ -16,7 +17,9 @@ public:
     Station* head;
 
     Station* addStation(QString name);
-    Station* addStation(QString name, Station* prev);
+    Station* addStation(QString name, Station* prev, int time);
+    Station* addTransferStation(QString name);
+    Station* addTransferStation(QString name, Station* prev, int time);
 
     Station* findStation(QString name);
 

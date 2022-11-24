@@ -28,12 +28,29 @@ Station *Line::addStation(QString name)
         return station;
     }
     return nullptr;
-
 }
 
-Station *Line::addStation(QString name, Station *prev)
+Station *Line::addStation(QString name, Station *prev, int time)
 {
-    Station* station = new Station(name, prev);
+    Station* station = new Station(name, prev, time);
+    stations.insert(name, station);
+    return station;
+}
+
+Station *Line::addTransferStation(QString name)
+{
+    if(head == nullptr){
+        Station* station = new TransferStation(name);
+        head = station;
+        stations.insert(name, station);
+        return station;
+    }
+    return nullptr;
+}
+
+Station *Line::addTransferStation(QString name, Station *prev, int time)
+{
+    Station* station = new TransferStation(name, prev, time);
     stations.insert(name, station);
     return station;
 }

@@ -6,9 +6,10 @@ Station::Station(QString name)
     this->name = name;
     this->prev = nullptr;
     this->next = nullptr;
+    time_to_prev = 0;
 }
 
-Station::Station(QString name, Station* prev)
+Station::Station(QString name, Station* prev, int time)
 {
     this->name = name;
     if(prev->next != nullptr){
@@ -20,5 +21,7 @@ Station::Station(QString name, Station* prev)
     }
     this->prev = prev;
     prev->next = this;
+
+    time_to_prev = time;
 }
 

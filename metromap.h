@@ -8,6 +8,7 @@
 #include <QStatusBar>
 #include <QTextEdit>
 #include <memory>
+#include <typeinfo.h>
 
 #include <metroplot.h>
 #include <line.h>
@@ -32,6 +33,16 @@ public:
     QJsonParseError json_read_errors;
 public slots:
     void readJSON();
+
+private:
+
+    QVector<QVector<int> > matrix;
+    QVector<std::shared_ptr<Line> > array_of_lines;
+    QMap<QString, Station*> array_of_stations;
+
+    void formMatrixOfVertexes();
+    void createStationsFromJson(const QJsonDocument& json_doc);
+    void settingTransferStations(const QJsonDocument& json_doc);
 };
 
 #endif // METROMAP_H

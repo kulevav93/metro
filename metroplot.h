@@ -6,6 +6,7 @@
 #include <QPainter>
 #include <QVector>
 #include <memory>
+#include <typeinfo.h>
 #include "line.h"
 
 #include<QDebug>

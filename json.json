@@ -8,8 +8,24 @@
                 },
 				{
                     "name": "second_1",
-                    "neighbor": "first_1"
-				}
+                    "neighbor": "first_1",
+                    "time_to_neighbor": 10,
+                    "transfers": [
+                        {
+                            "transfer_to": "second_2",
+                            "time_to_transfer": 4
+                        },
+						{
+                            "transfer_to": "second_222",
+                            "time_to_transfer": 44
+                        }
+                    ]
+                },
+                {
+                    "name": "third_1",
+                    "neighbor": "second_1",
+                    "time_to_neighbor": 8
+                }
 			]
 		},
 		{
@@ -20,9 +36,51 @@
                 },
                 {
                     "name": "second_2",
-                    "neighbor": "first_2"
+                    "neighbor": "first_2",
+                    "time_to_neighbor": 12,
+                    "transfers": [
+                        {
+                            "transfer_to": "second_1",
+                            "time_to_transfer": 4
+                        },
+                        {
+                            "transfer_to": "second_3",
+                            "time_to_transfer": 5
+                        }
+                    ]
+                },
+                {
+                    "name": "third_2",
+                    "neighbor": "second_2",
+                    "time_to_neighbor": 9
                 }
+
             ]
-		}
+        },
+        {
+            "name": "third line",
+            "stations": [
+                {
+                    "name": "first_3"
+                },
+                {
+                    "name": "second_3",
+                    "neighbor": "first_3",
+                    "time_to_neighbor": 8,
+                    "transfers": [
+                        {
+                            "transfer_to": "second_2",
+                            "time_to_transfer": 5
+                        }
+                    ]
+                },
+                {
+                    "name": "third_3",
+                    "neighbor": "second_3",
+                    "time_to_neighbor": 16
+                }
+
+            ]
+        }
 	]
 }  
