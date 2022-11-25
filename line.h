@@ -22,6 +22,8 @@ public:
     Station* addTransferStation(QString name, Station* prev, int time);
 
     Station* findStation(QString name);
+    int stationsNumber() {return stations.size();}
+    QVector<Station*> getStations(){return stations.values().toVector();}
 
 protected:
     QMap<QString, Station *> stations;

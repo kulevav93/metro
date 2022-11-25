@@ -73,7 +73,6 @@ void MetroMap::createStationsFromJson(const QJsonDocument &json_doc)
         QString line_name = lines.at(line).toObject().value("name").toString();
         auto line_ptr = std::make_shared<Line>(line_name);
         array_of_lines.append(line_ptr);
-        metro_plot->addLine(line_ptr);
 
         //get all stations in the Line from JSON
         QJsonArray stations = lines.at(line).toObject().value("stations").toArray(); // get stations of line
@@ -107,7 +106,7 @@ void MetroMap::createStationsFromJson(const QJsonDocument &json_doc)
                 }
             }
         }
-    }
+    }    
 }
 
 void MetroMap::settingTransferStations(const QJsonDocument &json_doc)
@@ -139,5 +138,7 @@ void MetroMap::settingTransferStations(const QJsonDocument &json_doc)
                 }
             }
         }
-    }metro_plot->printLines();
+    }
+    metro_plot->addLine(array_of_lines);
+    metro_plot->printLines();
 }

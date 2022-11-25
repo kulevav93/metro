@@ -17,7 +17,7 @@ class MetroPlot : public QWidget
 public:
     explicit MetroPlot(QWidget *parent = 0);
 
-    void addLine(std::shared_ptr<Line> line);
+    void addLine(QVector<std::shared_ptr<Line> > lines);
     void printLines();
 
 protected:
