@@ -17,13 +17,26 @@ class MetroPlot : public QWidget
 public:
     explicit MetroPlot(QWidget *parent = 0);
 
-    void addLine(QVector<std::shared_ptr<Line> > lines);
+    void addLines(QVector<std::shared_ptr<Line> > lines);
     void printLines();
 
 protected:
     void paintEvent(QPaintEvent *);
-public:
+
+private:
+    /*general applointment*/
     QVector<std::shared_ptr<Line> > lines;
+
+    /*for drawing
+    int col_number; //equals number of stations
+    int row_number; //equals max number of stations on a line
+    */
+
+    /*for choosing shortest way*/
+    QVector<QString> station_names;
+    QVector<QVector<int> > matrix;
+
+    void formMatrix();
 
 signals:
 

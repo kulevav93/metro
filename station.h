@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QPoint>
+#include <QColor>
 #include <memory>
 
 
@@ -13,7 +14,7 @@ public:
     Station(QString name, Station *prev, int time);
     void setCoordinates(const QPoint& coord){coordinates = coord;}
     QPoint getCoordinates(){return coordinates;}
-    QString name;
+    QString getName() const {return name;}
 
     Station* next;
     Station* prev;
@@ -21,6 +22,7 @@ public:
 
     virtual void f(){}
 private:
+    QString name;
     QPoint coordinates;
 };
 

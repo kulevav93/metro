@@ -67,11 +67,14 @@ void MetroMap::createStationsFromJson(const QJsonDocument &json_doc)
     ///createStationsFromJson(...) creates Stations and sets relations between them,
     /// sets time to prev station, also craetes TransferStations, if Station has parameter "transfer",
     /// but does not set link to other TransferStation, it does settingTransferStations(...)
+
     //get all Lines in the JSON file
     QJsonArray lines = QJsonValue(json_doc.object().value("lines")).toArray();
     for(auto line = 0; line < lines.count(); line++){
         QString line_name = lines.at(line).toObject().value("name").toString();
         auto line_ptr = std::make_shared<Line>(line_name);
+        QString color_name = lines.at(line).toObject().value("color").toString();
+        line_ptr.get()->setColor(color_name);
         array_of_lines.append(line_ptr);
 
         //get all stations in the Line from JSON
@@ -139,6 +142,6 @@ void MetroMap::settingTransferStations(const QJsonDocument &json_doc)
             }
         }
     }
-    metro_plot->addLine(array_of_lines);
+    metro_plot->addLines(array_of_lines);
     metro_plot->printLines();
 }
